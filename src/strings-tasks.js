@@ -52,13 +52,15 @@ function isString(value) {
  * @example
  *   'Hello', 'World' => 'HelloWorld'
  */
-function concatenateStrings(str1, str2) {
-  return str1 + str2; // Объединяем две строки с помощью оператора +
-}
+function concatenateStrings(value1, value2) {
+  // Check if both values are strings
+  if (typeof value1 !== 'string' || typeof value2 !== 'string') {
+    throw new Error('Both arguments must be strings');
+  }
 
-// Пример использования функции
-const result = concatenateStrings('Hello', 'World');
-console.log(result); // Вывод: 'HelloWorld'
+  // Use String.prototype.concat() to concatenate
+  return value1.concat(value2);
+}
 
 /**
  * Returns the first character of the given string.
@@ -104,8 +106,13 @@ function removeLeadingAndTrailingWhitespaces(value) {
  *   removeLeadingWhitespaces('\t\t\tHello, World! ') => 'Hello, World! '
  */
 function removeLeadingWhitespaces(value) {
-  // Проверяем, что значение является строкой
-  return typeof value === 'string' ? value.replace(/^\s+/, '') : ''; // Удаляем пробелы в начале строки
+  // Check if the input is a string
+  if (typeof value !== 'string') {
+    throw new Error('Input must be a string');
+  }
+
+  // Use trimStart() to remove leading whitespace characters
+  return value.trimStart();
 }
 
 /**
